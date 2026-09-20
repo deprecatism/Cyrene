@@ -107,6 +107,7 @@ class Blacklist(CyCog):
         except AlreadyBlacklistedError as err:
             content = str(err)
             await ctx.reply(content)
+            return
 
         await ctx.message.add_reaction(BotEmojis.GREEN_TICK)
 

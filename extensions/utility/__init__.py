@@ -111,7 +111,15 @@ class Utility(CyCog, name='Utility'):
             await self.bot.refresh_vars()
             return await ctx.reply(f'You have opted out from {format_var_name(feat.feature.name)}')
 
-        await self.bot.pool.execute('INSERT INTO FeatureOptins (user_id, feature) VALUES ($1, $2)', ctx.author.id, feature)
+        await self.bot.pool.execute(
+            """
+                INSERT INTO FeatureOptIns (user_id, feature)
+                VALUES ($1, $2)
+                ON CONFLICT (user_id, feature) DO NOTHING
+            """,
+            ctx.author.id,
+            feature,
+        )
         await self.bot.refresh_vars()
         return await ctx.reply(f'You have opted in for {format_var_name(FeatureType(feature).name)}')
 

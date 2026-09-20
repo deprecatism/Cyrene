@@ -275,5 +275,6 @@ class Cyrene(commands.AutoShardedBot):
             await self.pool.close()
         if hasattr(self, 'session'):
             await self.session.close()
-        self.timer_manager.close()
+        if hasattr(self, 'timer_manager'):
+            self.timer_manager.close()
         await super().close()

@@ -50,7 +50,7 @@ PERMISSIONS_STRUCTURE = {
         'moderate_members',
     ],
     'text': [
-        'send_messsages',
+        'send_messages',
         'send_messages_in_threads',
         'create_public_threads',
         'create_private_threads',
@@ -76,7 +76,7 @@ PERMISSIONS_STRUCTURE = {
         'use_external_sounds',
         'use_voice_activity',
         'priority_speaking',
-        'mute_memebrs',
+        'mute_memebers',
         'deafen_members',
         'move_members',
         'set_voice_channel_status',
@@ -110,10 +110,8 @@ def get_permission_emoji(
 
 
 def all_true_or_false(targets: Iterable[bool]) -> None | bool:
-    if all(targets):
-        return True
-    if not [_ for _ in targets if _ is True]:
-        return False
+    if val := all(targets):
+        return val
     return None
 
 

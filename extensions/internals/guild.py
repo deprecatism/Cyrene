@@ -23,6 +23,10 @@ BOT_FARM_COLOUR = discord.Colour.from_str('#fff5e8')
 def bot_farm_check(guild: discord.Guild) -> bool:
     bots = len([_ for _ in guild.members if _.bot is True])
     members = len(guild.members)
+
+    if not members:
+        return False
+
     return (bots / members) * 100 > BOT_FARM_THRESHOLD
 
 
@@ -48,7 +52,8 @@ def guild_embed(
         embed.colour = BLACKLIST_COLOUR
         embed_field_s.append('- This guild is blacklisted.')
 
-    embed.add_field(value=fmt_str(embed_field_s, seperator='\n'))
+    if embed_field_s:
+        embed.add_field(value=fmt_str(embed_field_s, seperator='\n'))
 
     # I dont really care about the colour if they are both.
 
