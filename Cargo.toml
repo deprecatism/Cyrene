@@ -5,3 +5,6 @@ edition = "2024"
 
 [dependencies]
 serenity = "0.12"
+poise    = "0.7"
+tokio    = { version = "1", features = [ "full" ] }
+dotenv   = "0.15"
